@@ -4,7 +4,7 @@
   line-height: 24px;
   font-weight: 400;
 
-  width: 1440px;
+  width: 100%;
   margin: auto;
   padding: auto;
   color-scheme: light dark;
@@ -57,6 +57,12 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+main {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:32px
 }
 
 @media (prefers-color-scheme: light) {
