@@ -138,6 +138,50 @@ label,input{
   background-color: #dc2626;
   border:transparent;
 }
+.test{
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.check{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+/* .check2{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+} */
+.check>a{
+  width:30%;
+  border: 1px solid #dc2626;
+  background-color: #dc2626;
+  color: snow;
+  padding: 4px 28px;
+  margin-left: 12px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.inputCheck{
+  width: 15px;
+  height: 15px;
+  float: right;
+}
+.nameTask{
+  float: left;
+  width: 80%;
+}
+.collBtn>span{
+  float: right;
+  border: 1px solid #06b6d4;
+  background-color: #06b6d4;
+  color: snow;
+  padding: 4px 24px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 ::placeholder{
   color: black;
 }

@@ -80,21 +80,6 @@ function App() {
       setFilteredResults(list)
     }
   }
-  // const handleSelectAll = (e) => {
-  //   setIsCheckAll(!isCheckAll);
-  //   setIsCheck(list.map((li) => li.id));
-  //   if (isCheckAll) {
-  //     setIsCheck([]);
-  //   }
-  // };
-  // const handleClick = (e) => {
-  //   const { id, checked } = e.target;
-  //   setIsCheck([...isCheck, id]);
-  //   if (!checked) {
-  //     setIsCheck(isCheck.filter((item) => item !== id));
-  //   }
-  // };
-
   return (
     <>
       <main>
@@ -110,8 +95,8 @@ function App() {
             <div className='blockOption'>
               <div>
                 <span className='op1'>Due Date</span>
-                <input type="date" {...register('date')} min={formatDate(date)} defaultValue={formatDate(date)} className='date'/>
-              </div>  
+                <input type="date" {...register('date')} min={formatDate(date)} defaultValue={formatDate(date)} className='date' />
+              </div>
               <div >
                 <span className='op1'>Piority</span> <br />
                 <select {...register('piority')} defaultValue="Normal" className='select'>
@@ -131,78 +116,116 @@ function App() {
             searchInput.length > 1 ? (
               filteredResults.map((item) => (
                 <>
-                  <div key={item.id}>
-                    <div >
-                      <input type="checkbox" id={item.id} key={item.id} name={item.name} checked={isCheck.includes(item.id)} onChange={handleClick} />
-                      <Collapsible type='checkbox' key={item.id} trigger={`${item.name}`}>
-                        <form>
-                          <input placeholder={item.name} id="name" />
-                          <span>Description</span>
-                          <textarea id="desc" />
-                          <div>
+                  <div>
+                  <div className='test' key={item.id}>
+                    <div className='check'>
+                      <div>
+                        <input type="checkbox" className='inputCheck' />
+                      </div>
+                      <div>
+                        <span className='nameTask'>{item.name}</span>
+                      </div>
+                    </div>
+                    <div className='check'>
+                      <Collapsible trigger={"Learn Something"} className="collBtn">
+                        <div className='detailData'>
+                          <form>
+                            <input placeholder={item.name} id="name" />
+                            <span>Description</span>
+                            <textarea id="desc" />
                             <div>
-                              <span>Due Date</span>
-                              <input type="date" defaultValue={formatDate(item.date)} />
+                              <div>
+                                <span>Due Date</span>
+                                <input type="date" defaultValue={item.date} />
+                              </div>
+                              <div>
+                                <span>Piority</span>
+                                <select defaultValue={item.piority}>
+                                  <option value="Low">Low</option>
+                                  <option value="Normal">Normal</option>
+                                  <option value="High">High</option>
+                                </select>
+                              </div>
                             </div>
-                            <div>
-                              <span>Piority</span>
-                              <select defaultValue={item.piority}>
-                                <option value="Low">Low</option>
-                                <option value="Normal">Normal</option>
-                                <option value="High">High</option>
-                              </select>
-                            </div>
-                          </div>
-                          <button>Update</button>
-                        </form>
+                            <button>Update</button>
+                          </form>
+                        </div>
                       </Collapsible>
+                     
                     </div>
-                    <div>
-                      <button>Detail</button>
-                      <button onClick={() => handleRemove(item.id)}>Remove</button>
-                    </div>
+                    <button onClick={() => handleRemove(item.id)}>
+                        Remove
+                      </button>
                   </div>
+                </div>
 
                 </>
               ))
             ) : (list.map((item, index) => (
               <>
-                <div key={item.id}>
-                  <div>
-                    <input type="checkbox" onChange={() => handleClick(item.id)} />
-                    <Collapsible type='checkbox' key={item.id} trigger={`${item.name}`}>
-                      <form>
-                        <input placeholder={item.name} id="name" />
-                        <span>Description</span>
-                        <textarea id="desc" />
+                <div>
+                  <div className='test' key={item.id}>
+                    <div className='check'>
+                      <div>
+                        <input type="checkbox" className='inputCheck' />
+                      </div>
+                      <div>
+                        <span className='nameTask'>{item.name}</span>
+                      </div>
+                    </div>
+                    <div className='check'>
+                      <Collapsible trigger={"Learn Something"} className="collBtn">
                         <div>
-                          <div>
-                            <span>Due Date</span>
-                            <input type="date" defaultValue={item.date} />
-                          </div>
-                          <div>
-                            <span>Piority</span>
-                            <select defaultValue={item.piority}>
-                              <option value="Low">Low</option>
-                              <option value="Normal">Normal</option>
-                              <option value="High">High</option>
-                            </select>
-                          </div>
+                          <form>
+                            <input placeholder={item.name} id="name" />
+                            <span>Description</span>
+                            <textarea id="desc" />
+                            <div>
+                              <div>
+                                <span>Due Date</span>
+                                <input type="date" defaultValue={item.date} />
+                              </div>
+                              <div>
+                                <span>Piority</span>
+                                <select defaultValue={item.piority}>
+                                  <option value="Low">Low</option>
+                                  <option value="Normal">Normal</option>
+                                  <option value="High">High</option>
+                                </select>
+                              </div>
+                            </div>
+                            <button>Update</button>
+                          </form>
                         </div>
-                        <button>Update</button>
-                      </form>
-                    </Collapsible>
-                  </div>
-
-                  <div>
-                    <button>Detail</button>
-                    <button onClick={() => handleRemove(item.id)}>Remove</button>
+                      </Collapsible>
+                      <a onClick={() => handleRemove(item.id)}>
+                        Remove
+                      </a>
+                    </div>
                   </div>
                 </div>
               </>)))
           }
         </div>
       </main>
+      {/* <div className='test'>
+        <div className='check'>
+          <div>
+            <input type="checkbox" className='inputCheck' />
+          </div>
+          <div>
+            <span className='nameTask'>Do Homework</span>
+          </div>
+        </div>
+        <div className='check'>
+          <Collapsible trigger={"Learn Something"} className="collBtn">
+            <div className='childColl'>ABCXYZ123456</div>
+          </Collapsible>
+          <a>
+            Remove
+          </a>
+        </div>
+      </div> */}
     </>
   )
 }
