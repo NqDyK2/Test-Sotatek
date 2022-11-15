@@ -5,8 +5,8 @@
   font-weight: 400;
 
   width: 100%;
-  margin: auto;
-  padding: auto;
+  /* margin: auto;
+  padding: auto; */
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
@@ -60,9 +60,10 @@ button:focus-visible {
 }
 
 main {
+  width:1440px;
   display:grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap:32px
+  grid-gap:40px
 }
 
 @media (prefers-color-scheme: light) {

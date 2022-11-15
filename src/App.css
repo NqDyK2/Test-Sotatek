@@ -70,3 +70,74 @@ label,input{
 .nameTask{
   width: 100%;
 }
+.inputName{
+  width:70%;
+  height: 10px;
+  padding: 10px;
+  margin: 52px auto 20px auto;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.blockErr{
+  width: 75%;
+  margin:-40px auto 0px auto
+}
+.errors{
+  color: red;
+}
+.block{
+  border: 1px solid black;
+  border-radius: 5px;
+  width:100%;
+}
+.blockTextArea{
+  width:73%;
+  margin: auto;
+}
+.textDes{
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+.textArea{
+  width:100%;
+  height: 100px;
+}
+.blockOption{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap:12px;
+  width: 73%;
+  margin: auto;
+
+}
+.op1{
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+.date{
+  width: 98%;
+  padding-top: 5px;
+  height: 30px;
+}
+.select{
+  width: 100%;
+  padding-top: 5px;
+  height: 40px;
+}
+.btn{
+  margin-top: 80px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  background-color: #0DB27F;
+  color: snow;
+  width: 75%;
+}
+.btn:hover{
+  background-color: #dc2626;
+  border:transparent;
+}
+::placeholder{
+  color: black;
+}

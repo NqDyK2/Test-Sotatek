@@ -30,7 +30,9 @@ function App() {
   const [list, setList] = useState(listToDo);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState('');
-  const [isChecked, setIsChecked] = useState([])
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isCheck, setIsCheck] = useState([]);
+  // const [isOpenBulk,setIsOpenBulk] = useState(false)
   const jsonObj = JSON.stringify(list)
   localStorage.setItem("jsonObj", jsonObj)
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -78,47 +80,60 @@ function App() {
       setFilteredResults(list)
     }
   }
+  // const handleSelectAll = (e) => {
+  //   setIsCheckAll(!isCheckAll);
+  //   setIsCheck(list.map((li) => li.id));
+  //   if (isCheckAll) {
+  //     setIsCheck([]);
+  //   }
+  // };
+  // const handleClick = (e) => {
+  //   const { id, checked } = e.target;
+  //   setIsCheck([...isCheck, id]);
+  //   if (!checked) {
+  //     setIsCheck(isCheck.filter((item) => item !== id));
+  //   }
+  // };
 
-  const handleClick = (value) => {
-    console.log(value);
-  }
   return (
     <>
       <main>
-        <div>
+        <div className='block'>
           <h1 className='title'>New Task</h1>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" {...register('name', { required: true })} placeholder='Add new task' />
-            {errors.name && <><br /> <span>Nhập đi đã.</span> </>}
-            <label htmlFor="">Description</label>
-            <textarea {...register('desc')} />
-            <div>
+            <input type="text" {...register('name', { required: true })} className="inputName" placeholder='Add new task' />
+            {errors.name && <><br /><div className='blockErr'><span className='errors'>You need to enter this field</span></div>  <br /> </>}
+            <div className='blockTextArea'>
+              <span className='textDes'>Description</span>
+              <textarea {...register('desc')} className="textArea" />
+            </div>
+            <div className='blockOption'>
               <div>
-                <label htmlFor="" >Due Date</label>
-                <input type="date" {...register('date')} min={formatDate(date)} defaultValue={formatDate(date)} />
-              </div>
-              <div>
-                <label htmlFor="">Piority</label>
-                <select {...register('piority')} defaultValue="Normal" >
+                <span className='op1'>Due Date</span>
+                <input type="date" {...register('date')} min={formatDate(date)} defaultValue={formatDate(date)} className='date'/>
+              </div>  
+              <div >
+                <span className='op1'>Piority</span> <br />
+                <select {...register('piority')} defaultValue="Normal" className='select'>
                   <option value="Low">Low</option>
                   <option value="Normal">Normal</option>
                   <option value="High">High</option>
                 </select>
               </div>
             </div>
-            <button> Add </button>
+            <button className='btn'> Add </button>
           </form>
         </div>
-        <div>
+        <div className='block'>
           <h1 className='title'>To Do List</h1>
-          <input type="text" onChange={(e) => searchItem(e.target.value)} />
+          <input type="text" className="inputName" placeholder='Search....' onChange={(e) => searchItem(e.target.value)} />
           {
             searchInput.length > 1 ? (
               filteredResults.map((item) => (
                 <>
                   <div key={item.id}>
                     <div >
-                      <input type="checkbox" onClick={() => handleClick(item.id)} />
+                      <input type="checkbox" id={item.id} key={item.id} name={item.name} checked={isCheck.includes(item.id)} onChange={handleClick} />
                       <Collapsible type='checkbox' key={item.id} trigger={`${item.name}`}>
                         <form>
                           <input placeholder={item.name} id="name" />
@@ -126,11 +141,11 @@ function App() {
                           <textarea id="desc" />
                           <div>
                             <div>
-                              <label htmlFor="">Due Date</label>
+                              <span>Due Date</span>
                               <input type="date" defaultValue={formatDate(item.date)} />
                             </div>
                             <div>
-                              <label htmlFor="">Piority</label>
+                              <span>Piority</span>
                               <select defaultValue={item.piority}>
                                 <option value="Low">Low</option>
                                 <option value="Normal">Normal</option>
@@ -154,7 +169,7 @@ function App() {
               <>
                 <div key={item.id}>
                   <div>
-                    <input type="checkbox" />
+                    <input type="checkbox" onChange={() => handleClick(item.id)} />
                     <Collapsible type='checkbox' key={item.id} trigger={`${item.name}`}>
                       <form>
                         <input placeholder={item.name} id="name" />
@@ -162,11 +177,11 @@ function App() {
                         <textarea id="desc" />
                         <div>
                           <div>
-                            <label htmlFor="">Due Date</label>
+                            <span>Due Date</span>
                             <input type="date" defaultValue={item.date} />
                           </div>
                           <div>
-                            <label htmlFor="">Piority</label>
+                            <span>Piority</span>
                             <select defaultValue={item.piority}>
                               <option value="Low">Low</option>
                               <option value="Normal">Normal</option>
